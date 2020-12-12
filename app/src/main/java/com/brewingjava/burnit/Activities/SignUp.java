@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.brewingjava.burnit.R;
+import com.brewingjava.burnit.Util.InternetService;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -23,6 +25,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.brewingjava.burnit.Util.API_PROVIDER.api;
+
 
 public class SignUp extends AppCompatActivity {
 
@@ -93,6 +102,8 @@ public class SignUp extends AppCompatActivity {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+                            Snackbar.make(findViewById(android.R.id.content), "Authentication Success.", Snackbar.LENGTH_SHORT).show();
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -102,13 +113,39 @@ public class SignUp extends AppCompatActivity {
                 });
     }
 
-    private void updateUI(FirebaseUser user){
-        startActivity(new Intent(this, LocationInput.class));
-        this.finish();
+    private void updateUI(FirebaseUser user) {
+        Call<String> call = api.singUp(user.getDisplayName(), user.getEmail());
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().equals("User registered")) {
+                        //move to location page.
+                        startActivity(new Intent(SignUp.this, LocationInput.class));
+                    } else {
+                        //move to directly home.
+                        startActivity(new Intent(SignUp.this, MainActivity.class));
+
+                    }
+                    SignUp.this.finish();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                if (!new InternetService(SignUp.this).haveNetworkConnection()) {
+                    showMessage("Not connected to internet.");
+                }
+            }
+        });
+    }
+
+    private void showMessage(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 
 
-    private void googleSignIn(){
+    private void googleSignIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
