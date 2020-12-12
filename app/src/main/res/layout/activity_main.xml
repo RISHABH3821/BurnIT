@@ -6,10 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".Activities.MainActivity">
 
+    <ImageButton
+        android:id="@+id/user_profile_button"
+        android:layout_margin="15dp"
+        android:scaleType="fitCenter"
+        android:background="?attr/selectableItemBackground"
+        android:layout_alignParentEnd="true"
+        android:elevation="6dp"
+        android:src="@drawable/ic_user_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_above="@id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        app:itemFontFamily="@font/nunito_regular"
         android:layout_alignParentBottom="true"
         app:backgroundColor="@color/main_color"
         app:menu="@menu/menu"/>
