@@ -15,6 +15,9 @@ import android.widget.Button;
 import com.brewingjava.burnit.Activities.WorkoutActivity;
 import com.brewingjava.burnit.R;
 
+import static com.brewingjava.burnit.Constants.StringConstants.pushUps;
+import static com.brewingjava.burnit.Constants.StringConstants.squats;
+
 public class ExerciseFragment extends Fragment {
 
     public ExerciseFragment() {
@@ -31,11 +34,22 @@ public class ExerciseFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button button = view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button squatsButton = view.findViewById(R.id.squats_button);
+        squatsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), WorkoutActivity.class));
+                Intent intent = new Intent(getContext(), WorkoutActivity.class);
+                intent.putExtra(WorkoutActivity.EXERCISE_TYPE, squats);
+                startActivity(intent);
+            }
+        });
+        Button pushUpsButton = view.findViewById(R.id.pushup_button);
+        pushUpsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WorkoutActivity.class);
+                intent.putExtra(WorkoutActivity.EXERCISE_TYPE, pushUps);
+                startActivity(intent);
             }
         });
     }

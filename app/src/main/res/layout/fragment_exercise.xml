@@ -5,18 +5,145 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.ExerciseFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Exercise fragment" />
-
-
-    <Button
-        android:id="@+id/button"
-        android:layout_centerInParent="true"
-        android:text="Squats"
+        android:id="@+id/heading"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/nunito_black"
+        android:text="Let\'s\nWorkout"
+        android:textColor="@color/black"
+        android:textSize="40sp" />
+
+
+    <RelativeLayout
+        android:id="@+id/squats_card"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_below="@id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_squat_card_bg">
+
+        <TextView
+            android:id="@+id/squats_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="14dp"
+            android:layout_toStartOf="@id/squat_icon"
+            android:fontFamily="@font/nunito_black"
+            android:text="Squats"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/squats_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/squats_title"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="14dp"
+            android:layout_toStartOf="@id/squat_icon"
+            android:fontFamily="@font/nunito_regular"
+            android:text="Excellent lower body exercise for strong legs and glutes. "
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/squat_icon"
+            android:layout_width="80dp"
+            android:layout_height="120dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/squat_card_model" />
+
+        <Button
+            android:id="@+id/squats_button"
+            android:layout_marginBottom="14dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/squats_subtitle"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/exercise_button_bg"
+            android:backgroundTint="#E05BA2"
+            android:fontFamily="@font/nunito_regular"
+            android:padding="0dp"
+            android:text="Start"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_below="@id/squats_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_pushup_card_bg">
+
+        <TextView
+            android:id="@+id/pushups_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="14dp"
+            android:layout_toStartOf="@id/pushup_icon"
+            android:fontFamily="@font/nunito_black"
+            android:text="Pushups"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/pushups_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pushups_title"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="14dp"
+            android:layout_toStartOf="@id/pushup_icon"
+            android:fontFamily="@font/nunito_regular"
+            android:text="Staple exercise to build muscle at home."
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/pushup_icon"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/pushups_card_icon" />
+
+        <Button
+            android:id="@+id/pushup_button"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/pushups_subtitle"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/exercise_button_bg"
+            android:backgroundTint="#E05BA2"
+            android:fontFamily="@font/nunito_regular"
+            android:padding="0dp"
+            android:text="Start"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

@@ -1,17 +1,15 @@
 package com.brewingjava.burnit.Activities;
 
+import android.media.Image;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.Rect;
-import android.media.FaceDetector;
-import android.media.Image;
-import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.brewingjava.burnit.Helpers.GraphicOverlay;
 import com.brewingjava.burnit.R;
@@ -29,37 +27,61 @@ import com.otaliastudios.cameraview.frame.Frame;
 import com.otaliastudios.cameraview.frame.FrameProcessor;
 import com.otaliastudios.cameraview.size.Size;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import io.github.erehmi.countdown.CountDownTask;
+import io.github.erehmi.countdown.CountDownTimers;
+
+import static com.brewingjava.burnit.Constants.StringConstants.squats;
 import static java.lang.Math.atan2;
 
 public class WorkoutActivity extends AppCompatActivity {
     private TextView message;
     public static final String POSE_DETECTION = "pose_detection";
+    public static final String EXERCISE_TYPE = "exercise_type";
     CameraView cameraView;
     GraphicOverlay graphicOverlay;
     boolean flagCounter = false;
     int counter = 0;
+    PoseDetector poseDetector;
+    TextView counterText;
+    String exerciseType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
+        exerciseType = getIntent().getStringExtra(EXERCISE_TYPE);
         message = findViewById(R.id.message);
         graphicOverlay = findViewById(R.id.graphic_overlay);
         cameraView = findViewById(R.id.camera);
         cameraView.setLifecycleOwner(this);
+        counterText = findViewById(R.id.counterText);
         PoseDetectorOptions options =
                 new PoseDetectorOptions.Builder()
                         .setDetectorMode(PoseDetectorOptions.STREAM_MODE)
                         .build();
-        PoseDetector poseDetector = PoseDetection.getClient(options);
+        poseDetector = PoseDetection.getClient(options);
         cameraView.setFrameProcessingMaxWidth(480);
         cameraView.setFrameProcessingMaxHeight(360);
+        CountDownTask countDownTask = CountDownTask.create();
+        long targetMillis = CountDownTask.elapsedRealtime() + 1000 * 5;
+        final int CD_INTERVAL = 1000;
+        countDownTask.until(counterText, targetMillis, CD_INTERVAL, new CountDownTimers.OnCountDownListener() {
+            @Override
+            public void onTick(View view, long millisUntilFinished) {
+                ((TextView) view).setText(String.valueOf(millisUntilFinished / CD_INTERVAL));
+            }
+
+            @Override
+            public void onFinish(View view) {
+                ((TextView) view).setVisibility(View.GONE);
+                addFrameProcessor();
+            }
+        });
+    }
+
+    private void addFrameProcessor() {
         cameraView.addFrameProcessor(new FrameProcessor() {
             @Override
             @WorkerThread
@@ -125,29 +147,23 @@ public class WorkoutActivity extends AppCompatActivity {
                                                         PoseLandmark leftMouth = pose.getPoseLandmark(PoseLandmark.LEFT_MOUTH);
                                                         PoseLandmark rightMouth = pose.getPoseLandmark(PoseLandmark.RIGHT_MOUTH);
 
-
-                                                        if (rightShoulder != null && rightKnee != null && rightHip != null) {
-                                                            double angle = getAngle(rightShoulder, rightHip, rightKnee);
-                                                            File root = new File(Environment.getExternalStorageDirectory().toString());
-                                                            File gpxfile = new File(root, "angles.txt");
-                                                            try {
-                                                                FileWriter writer = new FileWriter(gpxfile);
-                                                                writer.append("Angle of shoulder right hip and knee "+angle+"\n");
-                                                                writer.flush();
-                                                                writer.close();
-                                                            } catch (IOException e) {
-                                                                e.printStackTrace();
-                                                            }
-                                                            if(angle<90){
-                                                                if(flagCounter) {
-                                                                    Toast.makeText(WorkoutActivity.this, "1 rep completed", Toast.LENGTH_SHORT).show();
-                                                                    counter++;
-                                                                    message.setText("Counter = " + counter);
-                                                                    flagCounter = false;
+                                                        if (exerciseType.equals(squats)) {
+                                                            if (rightShoulder != null && rightKnee != null && rightHip != null) {
+                                                                double angle = getAngle(rightShoulder, rightHip, rightKnee);
+                                                                if (angle < 90) {
+                                                                    if (flagCounter) {
+                                                                        Toast.makeText(WorkoutActivity.this, "1 rep completed", Toast.LENGTH_SHORT).show();
+                                                                        counter++;
+                                                                        message.setText("Counter = " + counter);
+                                                                        flagCounter = false;
+                                                                    }
+                                                                } else if (angle > 120) {
+                                                                    flagCounter = true;
                                                                 }
-                                                            }else if(angle>120){
-                                                                flagCounter = true;
                                                             }
+                                                        }else{
+                                                            //count pushUps.
+
                                                         }
                                                     }
                                                 })
@@ -174,6 +190,24 @@ public class WorkoutActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void countSquats(PoseLandmark rightShoulder, PoseLandmark rightHip, PoseLandmark rightKnee) {
+        if (rightShoulder != null && rightKnee != null && rightHip != null) {
+            double angle = getAngle(rightShoulder, rightHip, rightKnee);
+            if (angle < 90) {
+                if (flagCounter) {
+                    Toast.makeText(WorkoutActivity.this, "1 rep completed", Toast.LENGTH_SHORT).show();
+                    counter++;
+                    message.setText("Counter = " + counter);
+                    flagCounter = false;
+                }
+            } else if (angle > 120) {
+                flagCounter = true;
+            }
+        }
+    }
+
 
     static double getAngle(PoseLandmark firstPoint, PoseLandmark midPoint, PoseLandmark lastPoint) {
         double result =
