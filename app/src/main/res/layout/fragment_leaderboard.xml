@@ -1,14 +1,334 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.LeaderboardFragment">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_above="@id/bottom_layout"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.LeaderboardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Leaderboard" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/nunito_black"
+            android:text="Leaderboard"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+
+        <TextView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_alignTop="@id/first_runnerup_card"
+            android:layout_alignEnd="@id/first_runnerup_card"
+            android:layout_marginTop="-12dp"
+            android:layout_marginEnd="-12dp"
+            android:background="@drawable/ic_gold_circle"
+            android:elevation="10dp"
+            android:fontFamily="@font/nunito_black"
+            android:gravity="center"
+            android:text="1"
+            android:textAlignment="gravity"
+            android:textColor="@color/almostblack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_alignTop="@id/second_runnerup_card"
+            android:layout_alignEnd="@id/second_runnerup_card"
+            android:layout_marginTop="-12dp"
+            android:layout_marginEnd="-12dp"
+            android:background="@drawable/ic_silver_circle"
+            android:elevation="10dp"
+            android:fontFamily="@font/nunito_black"
+            android:gravity="center"
+            android:text="2"
+            android:textAlignment="gravity"
+            android:textColor="@color/almostblack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_alignTop="@id/third_runnerup_card"
+            android:layout_alignEnd="@id/third_runnerup_card"
+            android:layout_marginTop="-12dp"
+            android:layout_marginEnd="-12dp"
+            android:background="@drawable/ic_bronze_circle"
+            android:elevation="10dp"
+            android:fontFamily="@font/nunito_black"
+            android:gravity="center"
+            android:text="3"
+            android:textAlignment="gravity"
+            android:textColor="@color/almostblack"
+            android:textSize="18sp" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/first_runnerup_card"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="12dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:cardBackgroundColor="@android:color/darker_gray"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:id="@+id/user_avatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/first_runnerup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito_black"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text=" "
+                    android:textAlignment="gravity"
+                    android:textColor="@color/main_color"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/first_points"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="  "
+                    android:textAlignment="gravity"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/second_runnerup_card"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_alignTop="@id/first_runnerup_card"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="70dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="12dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:cardBackgroundColor="@android:color/darker_gray"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:id="@+id/second_user_avatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/second_runnerup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito_black"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text=" "
+                    android:textAlignment="gravity"
+                    android:textColor="@color/main_color"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/second_points"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="  "
+                    android:textAlignment="gravity"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/third_runnerup_card"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_alignTop="@id/first_runnerup_card"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="20dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="12dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:cardBackgroundColor="@android:color/darker_gray"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:id="@+id/third_user_avatar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/third_runnerup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito_black"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text=" "
+                    android:textAlignment="gravity"
+                    android:textColor="@color/main_color"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/third_points"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="  "
+                    android:textAlignment="gravity"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/leaderboradRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/third_runnerup_card"
+            android:layout_margin="4dp"
+            android:nestedScrollingEnabled="false" />
+
+
+    </RelativeLayout>
+</ScrollView>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingVertical="8dp">
+
+        <TextView
+            android:id="@+id/rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_regular"
+            android:gravity="center"
+            android:text="4"
+            android:textAlignment="gravity"
+            android:textColor="@color/main_color"
+            android:textSize="20sp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            app:cardBackgroundColor="@android:color/darker_gray"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="4dp">
+
+            <ImageView
+                android:id="@+id/current_user_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/nunito_black"
+            android:maxLines="1"
+            android:text="username"
+            android:textColor="@color/almostblack"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/user_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fontFamily="@font/nunito_black"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="100pts"
+            android:textAlignment="gravity"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</RelativeLayout>

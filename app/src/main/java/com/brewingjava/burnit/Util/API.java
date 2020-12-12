@@ -1,4 +1,6 @@
 package com.brewingjava.burnit.Util;
+import com.brewingjava.burnit.DataModels.LeaderBoardItem;
+
 import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -10,8 +12,8 @@ import retrofit2.http.Query;
 
 public interface API {
 
-//    @GET("/countRequest/")
-//    Call<Integer> countRequest(@Query("userId") String userId);
+    @GET("/leaderboard/")
+    Call<List<LeaderBoardItem>> getLeaderBoard();
 
     @FormUrlEncoded
     @POST("/signup/")
