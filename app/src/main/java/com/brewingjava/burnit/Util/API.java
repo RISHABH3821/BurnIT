@@ -31,4 +31,10 @@ public interface API {
                                 @Field("email") String email);
 
 
+    @FormUrlEncoded
+    @POST("/reps/")
+    Call<String> saveReps(@Field("reps") int reps,
+                        @Field("type") String type,
+                        @Field("email") String email);
+
 }

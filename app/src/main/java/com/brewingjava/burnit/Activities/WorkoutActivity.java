@@ -13,9 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.brewingjava.burnit.Helpers.GraphicOverlay;
 import com.brewingjava.burnit.R;
+import com.brewingjava.burnit.Util.API_PROVIDER;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.pose.Pose;
 import com.google.mlkit.vision.pose.PoseDetection;
@@ -31,12 +33,15 @@ import java.util.concurrent.ExecutionException;
 
 import io.github.erehmi.countdown.CountDownTask;
 import io.github.erehmi.countdown.CountDownTimers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.brewingjava.burnit.Constants.StringConstants.squats;
 import static java.lang.Math.atan2;
 
 public class WorkoutActivity extends AppCompatActivity {
-    private TextView message;
+    private TextView repCounter, calorieCount;
     public static final String POSE_DETECTION = "pose_detection";
     public static final String EXERCISE_TYPE = "exercise_type";
     CameraView cameraView;
@@ -51,8 +56,15 @@ public class WorkoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workout);
+        TextView saveExercise = findViewById(R.id.save_exercise);
+        saveExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveExerciseToDB(counter);
+            }
+        });
         exerciseType = getIntent().getStringExtra(EXERCISE_TYPE);
-        message = findViewById(R.id.message);
+        repCounter = findViewById(R.id.rep_count);
         graphicOverlay = findViewById(R.id.graphic_overlay);
         cameraView = findViewById(R.id.camera);
         cameraView.setLifecycleOwner(this);
@@ -77,6 +89,23 @@ public class WorkoutActivity extends AppCompatActivity {
             public void onFinish(View view) {
                 ((TextView) view).setVisibility(View.GONE);
                 addFrameProcessor();
+            }
+        });
+    }
+
+    private void saveExerciseToDB(int counter) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        Call<String> call = API_PROVIDER.api.saveReps(counter, exerciseType, mAuth.getCurrentUser().getEmail());
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(WorkoutActivity.this, response.body(), Toast.LENGTH_SHORT).show();
+                WorkoutActivity.this.finish();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(WorkoutActivity.this, "Something went wrong, try again.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -149,19 +178,23 @@ public class WorkoutActivity extends AppCompatActivity {
 
                                                         if (exerciseType.equals(squats)) {
                                                             if (rightShoulder != null && rightKnee != null && rightHip != null) {
+                                                                counterText.setVisibility(View.INVISIBLE);
                                                                 double angle = getAngle(rightShoulder, rightHip, rightKnee);
                                                                 if (angle < 90) {
                                                                     if (flagCounter) {
                                                                         Toast.makeText(WorkoutActivity.this, "1 rep completed", Toast.LENGTH_SHORT).show();
                                                                         counter++;
-                                                                        message.setText("Counter = " + counter);
+                                                                        repCounter.setText(String.format("%d", counter));
                                                                         flagCounter = false;
                                                                     }
                                                                 } else if (angle > 120) {
                                                                     flagCounter = true;
                                                                 }
+                                                            } else {
+                                                                counterText.setText("Stand at distance facing right");
+                                                                counterText.setVisibility(View.VISIBLE);
                                                             }
-                                                        }else{
+                                                        } else {
                                                             //count pushUps.
 
                                                         }
@@ -189,23 +222,6 @@ public class WorkoutActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-
-    private void countSquats(PoseLandmark rightShoulder, PoseLandmark rightHip, PoseLandmark rightKnee) {
-        if (rightShoulder != null && rightKnee != null && rightHip != null) {
-            double angle = getAngle(rightShoulder, rightHip, rightKnee);
-            if (angle < 90) {
-                if (flagCounter) {
-                    Toast.makeText(WorkoutActivity.this, "1 rep completed", Toast.LENGTH_SHORT).show();
-                    counter++;
-                    message.setText("Counter = " + counter);
-                    flagCounter = false;
-                }
-            } else if (angle > 120) {
-                flagCounter = true;
-            }
-        }
     }
 
 
