@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.brewingjava.burnit">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BurnIT">
+        <activity android:name=".Activities.BodyStatActivity"></activity>
+        <activity android:name=".Activities.LocationInput" />
         <activity android:name=".Activities.SignUp" />
         <activity android:name=".Activities.SplashScreen">
             <intent-filter>
@@ -19,9 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MainActivity">
-
-        </activity>
+        <activity android:name=".Activities.MainActivity" />
     </application>
 
 </manifest>

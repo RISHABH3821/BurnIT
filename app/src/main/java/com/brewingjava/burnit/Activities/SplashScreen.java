@@ -22,9 +22,11 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 if(mAuth.getCurrentUser()!=null){
-                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                    startActivity(new Intent(SplashScreen.this, SignUp.class));
+                    SplashScreen.this.finish();
                 }else{
                     startActivity(new Intent(SplashScreen.this, SignUp.class));
+                    SplashScreen.this.finish();
                 }
             }
         }, 1500);

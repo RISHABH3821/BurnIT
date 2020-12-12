@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".Activities.LocationInput">
+
+
+    <TextView
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="27dp"
+        android:textSize="40sp"
+        android:id="@+id/heading"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_black"
+        android:text="Connect with peers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="27dp"
+        android:textSize="40sp"
+        android:elevation="2dp"
+        android:layout_alignTop="@id/bottom_card"
+        android:id="@+id/sing_in_with_text"
+        android:textColor="@color/white"
+        android:fontFamily="@font/nunito_black"
+        android:text="Location:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:src="@drawable/location_vector"
+        android:layout_above="@id/bottom_card"
+        android:layout_below="@id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:weightSum="2"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="27dp"
+        android:elevation="3dp"
+        android:layout_below="@id/sing_in_with_text"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/option_1"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nunito_black"
+            android:textSize="30dp"
+            android:background="@drawable/ic_selector_bg"
+            android:textAlignment="gravity"
+            android:paddingHorizontal="30dp"
+            android:gravity="center"
+            android:text="BLR"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/option_2"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nunito_black"
+            android:textSize="30dp"
+            android:textAlignment="gravity"
+            android:paddingHorizontal="30dp"
+            android:gravity="center"
+            android:text="HYD"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+    <ImageButton
+        android:id="@+id/next_button"
+        android:elevation="5dp"
+        android:layout_margin="25dp"
+        android:background="?attr/selectableItemBackground"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_next_icon"
+        android:layout_width="40dp"
+        android:scaleType="fitXY"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:id="@+id/bottom_card"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_top_curved_rectangle"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>

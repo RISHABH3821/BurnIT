@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".Activities.BodyStatActivity">
+
+    <TextView
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="27dp"
+        android:textSize="40sp"
+        android:id="@+id/heading"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_black"
+        android:text="Connect with peers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="27dp"
+        android:textSize="40sp"
+        android:elevation="2dp"
+        android:layout_alignTop="@id/bottom_card"
+        android:id="@+id/sing_in_with_text"
+        android:textColor="@color/white"
+        android:fontFamily="@font/nunito_black"
+        android:text="Body Stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:src="@drawable/location_vector"
+        android:layout_above="@id/bottom_card"
+        android:layout_below="@id/heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:elevation="3dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/sing_in_with_text"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/weight"
+            android:paddingTop="10dp"
+            android:paddingStart="5dp"
+            android:paddingBottom="10dp"
+            android:paddingEnd="0dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nunito_black"
+            android:textSize="38sp"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:text="60"
+            android:maxWidth="120dp"
+            android:maxLength="3"
+            android:inputType="number"
+            android:minWidth="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textColor="@color/white"
+            android:fontFamily="@font/nunito_black"
+            android:textSize="24sp"
+            android:text="Kg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:layout_marginStart="30dp"
+            android:id="@+id/height"
+            android:maxLength="3"
+            android:inputType="number"
+            android:paddingTop="10dp"
+            android:paddingStart="5dp"
+            android:paddingBottom="10dp"
+            android:paddingEnd="0dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nunito_black"
+            android:textSize="38sp"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:text="175"
+            android:maxWidth="120dp"
+            android:minWidth="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textColor="@color/white"
+            android:fontFamily="@font/nunito_black"
+            android:textSize="24sp"
+            android:text="cm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+    <ImageButton
+        android:id="@+id/next_button"
+        android:elevation="5dp"
+        android:layout_margin="25dp"
+        android:background="?attr/selectableItemBackground"
+        android:layout_alignParentEnd="true"
+        android:scaleType="fitXY"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/final_done_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:id="@+id/bottom_card"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_top_curved_rectangle"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
