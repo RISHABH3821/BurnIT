@@ -1,8 +1,10 @@
-package com.brewingjava.burnit;
+package com.brewingjava.burnit.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.brewingjava.burnit.R;
 
 public class MainActivity extends AppCompatActivity {
 
