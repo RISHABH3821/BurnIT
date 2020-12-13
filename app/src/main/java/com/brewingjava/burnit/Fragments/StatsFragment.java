@@ -367,6 +367,9 @@ Depends on the position number on the X axis, we need to display the label, Here
                 if (response.isSuccessful()) {
                     if (response.body() != null && response.body().size() > 0) {
                         int total = Integer.parseInt(response.body().get(0).getTotal());
+                        if(total==0){
+                            total = 1;
+                        }
                         if (type.equals(StringConstants.squats)) {
                             seekBar.setProgress((int) ((squatCount / total) * 100));
                         } else {

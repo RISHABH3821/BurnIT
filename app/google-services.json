@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "688252635513",
+    "firebase_url": "https://springboot-c0330.firebaseio.com",
+    "project_id": "springboot-c0330",
+    "storage_bucket": "springboot-c0330.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688252635513:android:602ad2810cc2ca670187a8",
+        "android_client_info": {
+          "package_name": "com.brewingjava.burnit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688252635513-ialh5gds5kr9mkv30q8e73m1e5hjj2h4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgaWkZOFlaL60ryJa7hwq2cCY026oT_Z4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688252635513-ialh5gds5kr9mkv30q8e73m1e5hjj2h4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688252635513:android:1705178cb12991720187a8",
+        "android_client_info": {
+          "package_name": "com.rishabh.squatcounter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688252635513-ialh5gds5kr9mkv30q8e73m1e5hjj2h4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgaWkZOFlaL60ryJa7hwq2cCY026oT_Z4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688252635513-ialh5gds5kr9mkv30q8e73m1e5hjj2h4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
