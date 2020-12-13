@@ -98,6 +98,7 @@ public class LeaderboardFragment extends Fragment {
                         count++;
                         if (i.getName().equals(currentUserName)) {
                             if (count < 3) {
+                                bottomLayout.setVisibility(View.GONE);
                                 return;
                             }
                             userName.setText(currentUserName);

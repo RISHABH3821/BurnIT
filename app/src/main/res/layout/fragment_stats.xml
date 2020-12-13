@@ -92,7 +92,7 @@
             android:layout_marginBottom="10dp"
             android:layout_toStartOf="@id/squat_flag"
             android:layout_toEndOf="@id/squat_icon"
-            android:progress="40"
+            android:progress="0"
             android:progressDrawable="@drawable/progress"
             android:thumb="@drawable/ic_dumbbell_1" />
     </RelativeLayout>
@@ -162,7 +162,7 @@
             android:layout_marginBottom="10dp"
             android:layout_toStartOf="@id/pushup_flag"
             android:layout_toEndOf="@id/pushup_icon"
-            android:progress="50"
+            android:progress="0"
             android:progressDrawable="@drawable/progress"
             android:thumb="@drawable/ic_dumbbell_1" />
     </RelativeLayout>
@@ -170,7 +170,8 @@
     <TextView
         android:id="@+id/tip"
         android:fontFamily="@font/nunito_regular"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:padding="4dp"
         android:textColor="@color/almostblack"
         android:textAlignment="gravity"
         android:gravity="center"

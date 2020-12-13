@@ -2,6 +2,7 @@ package com.brewingjava.burnit.Activities;
 
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.brewingjava.burnit.DataModels.HealthData;
 import com.brewingjava.burnit.Helpers.GraphicOverlay;
 import com.brewingjava.burnit.R;
 import com.brewingjava.burnit.Util.API_PROVIDER;
@@ -51,6 +53,9 @@ public class WorkoutActivity extends AppCompatActivity {
     PoseDetector poseDetector;
     TextView counterText;
     String exerciseType;
+    private float MET = 3.8f;
+    private float totalCaloriesBurned = 0;
+    private double weight = 60;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,7 @@ public class WorkoutActivity extends AppCompatActivity {
         cameraView = findViewById(R.id.camera);
         cameraView.setLifecycleOwner(this);
         counterText = findViewById(R.id.counterText);
+        calorieCount = findViewById(R.id.burned_calories);
         PoseDetectorOptions options =
                 new PoseDetectorOptions.Builder()
                         .setDetectorMode(PoseDetectorOptions.STREAM_MODE)
@@ -93,7 +99,50 @@ public class WorkoutActivity extends AppCompatActivity {
                 addFrameProcessor();
             }
         });
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        getHealthData(mAuth.getCurrentUser().getEmail());
     }
+
+    private void getHealthData(String email) {
+        Call<HealthData> call = API_PROVIDER.api.getHealthData(email);
+        call.enqueue(new Callback<HealthData>() {
+            @Override
+            public void onResponse(Call<HealthData> call, Response<HealthData> response) {
+                if (response.isSuccessful()) {
+                    HealthData healthData = response.body();
+                    weight = Double.parseDouble(healthData.getWeight());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HealthData> call, Throwable t) {
+
+            }
+        });
+    }
+
+    Handler handler = new Handler();
+    Runnable runnable;
+    int delay = 10000;
+    @Override
+    protected void onResume() {
+        handler.postDelayed(runnable = new Runnable() {
+            public void run() {
+                handler.postDelayed(runnable, delay);
+                float calories = (float) (0.0175 * MET * weight) / 10;
+                totalCaloriesBurned +=calories;
+                calorieCount.setText(String.format("%.2f", totalCaloriesBurned));
+            }
+        }, delay);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(runnable); //stop handler when activity not visible super.onPause();
+    }
+
 
     private void saveExerciseToDB(int counter) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -198,7 +247,20 @@ public class WorkoutActivity extends AppCompatActivity {
                                                             }
                                                         } else {
                                                             //count pushUps.
-
+                                                            if(rightShoulder!=null && rightElbow!=null && rightWrist!=null){
+                                                                counterText.setVisibility(View.INVISIBLE);
+                                                                double angle = getAngle(rightShoulder, rightElbow, rightWrist);
+                                                                if (angle < 90) {
+                                                                    if (flagCounter) {
+                                                                        Toast.makeText(WorkoutActivity.this, "1 rep completed", Toast.LENGTH_SHORT).show();
+                                                                        counter++;
+                                                                        repCounter.setText(String.format("%d", counter));
+                                                                        flagCounter = false;
+                                                                    }
+                                                                } else if (angle > 120) {
+                                                                    flagCounter = true;
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 })

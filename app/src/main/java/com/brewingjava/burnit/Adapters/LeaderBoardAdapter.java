@@ -40,7 +40,7 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder,
                                  final int position) {
-        holder.rank.setText(String.format(Locale.getDefault(),"%d", position + 3));
+        holder.rank.setText(String.format(Locale.getDefault(),"%d", position + 4));
         holder.points.setText(dataSet.get(position).getSum());
         holder.name.setText(dataSet.get(position).getName());
 
