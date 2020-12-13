@@ -37,9 +37,7 @@ public class MainActivity extends AppCompatActivity {
         userProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this, SignUp.class));
-                MainActivity.this.finish();
+               startActivity(new Intent(MainActivity.this, ProfileActivity.class));
             }
         });
         ExerciseFragment exerciseFragment = new ExerciseFragment();

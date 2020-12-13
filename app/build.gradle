@@ -52,4 +52,5 @@ dependencies {
     implementation 'com.otaliastudios:cameraview:2.6.4'
     implementation 'com.google.mlkit:face-detection:16.0.2'
     implementation 'com.github.erehmi:countdowntask:1.0.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

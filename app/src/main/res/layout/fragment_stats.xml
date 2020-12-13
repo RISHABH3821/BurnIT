@@ -1,14 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.StatsFragment">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Stats fragment" />
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nunito_black"
+        android:text="Statistics"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
 
-</FrameLayout>
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/linechart"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_below="@id/heading" />
+
+    <RelativeLayout
+        android:id="@+id/squats_card"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linechart"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/ic_rectangle_16">
+
+        <ImageView
+            android:id="@+id/squat_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ellipse_squat" />
+
+        <TextView
+            android:id="@+id/squat_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@id/squat_icon"
+            android:fontFamily="@font/nunito_black"
+            android:text="Squats"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/squat_reps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/squat_heading"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/squat_icon"
+            android:fontFamily="@font/nunito_regular"
+            android:text=" reps"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/squat_flag"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/racing_flag_1" />
+
+        <SeekBar
+            android:id="@+id/squat_seekbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/squat_reps"
+            android:layout_marginStart="-8dp"
+            android:layout_marginTop="-8dp"
+            android:layout_marginEnd="-8dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toStartOf="@id/squat_flag"
+            android:layout_toEndOf="@id/squat_icon"
+            android:progress="40"
+            android:progressDrawable="@drawable/progress"
+            android:thumb="@drawable/ic_dumbbell_1" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/pushup_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/squats_card"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/ic_rectangle_17">
+
+        <ImageView
+            android:id="@+id/pushup_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ellipse_pushup" />
+
+        <TextView
+            android:id="@+id/pushup_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@id/pushup_icon"
+            android:fontFamily="@font/nunito_black"
+            android:text="Pushups"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/pushup_reps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pushup_heading"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/pushup_icon"
+            android:fontFamily="@font/nunito_regular"
+            android:text=" reps"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/pushup_flag"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/racing_flag_1" />
+
+        <SeekBar
+            android:id="@+id/pushup_seekbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pushup_reps"
+            android:layout_marginStart="-8dp"
+            android:layout_marginTop="-8dp"
+            android:layout_marginEnd="-8dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toStartOf="@id/pushup_flag"
+            android:layout_toEndOf="@id/pushup_icon"
+            android:progress="50"
+            android:progressDrawable="@drawable/progress"
+            android:thumb="@drawable/ic_dumbbell_1" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tip"
+        android:fontFamily="@font/nunito_regular"
+        android:textSize="18sp"
+        android:textColor="@color/almostblack"
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:layout_below="@id/pushup_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
+</ScrollView>

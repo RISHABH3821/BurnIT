@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ProfileActivity">
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/ic_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:padding="4dp"
+        android:textSize="24sp"
+        android:textColor="@color/almostblack"
+        android:maxLines="1"
+        android:fontFamily="@font/nunito_black"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/back_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/weightHeading"
+        android:padding="4dp"
+        android:layout_below="@id/name"
+        android:text="Weight: (IN Kg)"
+        android:textSize="22sp"
+        android:textColor="@color/almostblack"
+        android:maxLines="1"
+        android:fontFamily="@font/nunito_bold"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/weightEt"
+        android:layout_below="@id/weightHeading"
+        android:textSize="22sp"
+        android:inputType="number"
+        android:textColor="@color/almostblack"
+        android:maxLines="1"
+        android:fontFamily="@font/nunito_bold"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/heightHeading"
+        android:padding="4dp"
+        android:layout_below="@id/weightEt"
+        android:text="Height: (IN cm)"
+        android:textSize="22sp"
+        android:textColor="@color/almostblack"
+        android:maxLines="1"
+        android:fontFamily="@font/nunito_bold"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/heightEt"
+        android:layout_below="@id/heightHeading"
+        android:textSize="22sp"
+        android:textColor="@color/almostblack"
+        android:maxLines="1"
+        android:inputType="number"
+        android:fontFamily="@font/nunito_bold"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:text="Save"
+        android:textSize="20sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:layout_below="@id/heightEt"
+        android:background="@drawable/exercise_button_bg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:id="@+id/or"
+        android:padding="4dp"
+        android:layout_below="@id/save_button"
+        android:text="Or"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        android:textSize="22sp"
+        android:textColor="@color/almostblack"
+        android:maxLines="1"
+        android:fontFamily="@font/nunito_black"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:text="Logout"
+        android:textSize="20sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="@color/main_color"
+        android:textAllCaps="false"
+        android:layout_below="@id/or"
+        android:background="@drawable/ic_rectangle_13"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+</RelativeLayout>

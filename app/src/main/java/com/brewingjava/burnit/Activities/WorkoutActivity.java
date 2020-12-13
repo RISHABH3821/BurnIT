@@ -64,6 +64,8 @@ public class WorkoutActivity extends AppCompatActivity {
             }
         });
         exerciseType = getIntent().getStringExtra(EXERCISE_TYPE);
+        TextView heading = findViewById(R.id.heading);
+        heading.setText(exerciseType.toUpperCase());
         repCounter = findViewById(R.id.rep_count);
         graphicOverlay = findViewById(R.id.graphic_overlay);
         cameraView = findViewById(R.id.camera);

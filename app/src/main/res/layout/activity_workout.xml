@@ -7,6 +7,15 @@
     android:background="@color/white"
     tools:context=".Activities.WorkoutActivity">
 
+    <TextView
+        android:id="@+id/heading"
+        android:padding="16dp"
+        android:fontFamily="@font/nunito_black"
+        android:background="#10000000"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <com.otaliastudios.cameraview.CameraView
         android:id="@+id/camera"
         android:keepScreenOn="true"
