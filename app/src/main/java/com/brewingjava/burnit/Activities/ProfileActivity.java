@@ -62,14 +62,14 @@ public class ProfileActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!(weightEt.getText().toString().length() > 0 && Integer.parseInt(heightEt.getText().toString()) > 20)) {
+                if (!(weightEt.getText().toString().length() > 0 && Float.parseFloat(heightEt.getText().toString()) > 20)) {
                     Toast.makeText(ProfileActivity.this, "Enter valid weight > 0", Toast.LENGTH_SHORT).show();
-                } else if (!(heightEt.getText().toString().length() > 0 && Integer.parseInt(heightEt.getText().toString()) > 80)) {
+                } else if (!(heightEt.getText().toString().length() > 0 && Float.parseFloat(heightEt.getText().toString()) > 80)) {
                     Toast.makeText(ProfileActivity.this, "Enter valid height > 80", Toast.LENGTH_SHORT).show();
 
                 } else {
                     updateHealthData(mAuth.getCurrentUser().getEmail(),
-                            Integer.parseInt(heightEt.getText().toString()), Integer.parseInt(weightEt.getText().toString()));
+                            (int)Float.parseFloat(heightEt.getText().toString()), (int)Float.parseFloat(weightEt.getText().toString()));
                 }
             }
         });

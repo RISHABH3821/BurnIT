@@ -366,14 +366,16 @@ Depends on the position number on the X axis, we need to display the label, Here
             public void onResponse(Call<List<HighestRep>> call, Response<List<HighestRep>> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null && response.body().size() > 0) {
-                        int total = Integer.parseInt(response.body().get(0).getTotal());
+                        double total = Double.parseDouble(response.body().get(0).getTotal());
+                        Log.d("squatsreps", "total: "+total+" squatcount: "+squatCount);
                         if(total==0){
                             total = 1;
                         }
                         if (type.equals(StringConstants.squats)) {
-                            seekBar.setProgress((int) ((squatCount / total) * 100));
+                            seekBar.setProgress((int)((squatCount / total) * 100));
                         } else {
-                            seekBar.setProgress((int) ((pushupCount / total) * 100));
+                            seekBar.setProgress((int)((pushupCount / total) * 100));
+
                         }
                     }
                 }
